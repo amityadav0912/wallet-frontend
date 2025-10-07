@@ -23,6 +23,7 @@ const CATEGORIES = [
   { id: "entertainment", name: "Entertainment", icon: "film" },
   { id: "bills", name: "Bills", icon: "receipt" },
   { id: "income", name: "Income", icon: "cash" },
+  { id: "Gym", name: "Health", icon: "fitness"},
   { id: "other", name: "Other", icon: "ellipsis-horizontal" },
 ];
 

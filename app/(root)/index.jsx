@@ -6,7 +6,7 @@ import { useUser } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { Alert, FlatList, Image, RefreshControl, TouchableOpacity } from "react-native";
 import { useTransactions } from "../../hooks/useTransactions";
-import PageLoader from "../../components/PageLoader";
+import PageLoader from '../../components/PageLoader.jsx';
 import { Ionicons } from "@expo/vector-icons";
 import { BalanceCard } from "../../components/BalanceCard";
 import { TransactionItem } from "../../components/TransactionItem"
