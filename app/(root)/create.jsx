@@ -4,16 +4,17 @@ import {
   Alert,
   TouchableOpacity,
   TextInput,
-  ActivityIndicatorBase,
   ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useUser } from "@clerk/clerk-expo";
 import { useState } from "react";
 import { API_URL } from "../../constants/api";
-import { styles } from "../../assets/styles/create.styles";
+import { styles } from "../../assets/styles/create.style.js";
 import { COLORS } from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 
 const CATEGORIES = [
   { id: "food", name: "Food & Drinks", icon: "fast-food" },
@@ -71,6 +72,8 @@ const CreateScreen = () => {
         throw new Error(errorData.error || "Failed to create transaction");
       }
 
+      await response.json()
+
       Alert.alert("Success", "Transaction created successfully");
       router.back();
     } catch (error) {
@@ -82,6 +85,13 @@ const CreateScreen = () => {
   };
 
   return (
+    <KeyboardAwareScrollView
+              style={{flex: 1}}
+              contentContainerStyle={{flexGrow: 1}}
+              enableOnAndroid={true}
+              enableAutomaticScroll={true}
+              extraScrollHeight={50}
+    >
     <View style={styles.container}>
       {/* HEADER */}
       <View style={styles.header}>
@@ -136,7 +146,7 @@ const CreateScreen = () => {
 
         {/* AMOUNT CONTAINER */}
         <View style={styles.amountContainer}>
-          <Text style={styles.currencySymbol}>$</Text>
+          <Text style={styles.currencySymbol}>₹</Text>
           <TextInput
             style={styles.amountInput}
             placeholder="0.00"
@@ -204,6 +214,7 @@ const CreateScreen = () => {
         </View>
       )}
     </View>
+    </KeyboardAwareScrollView>
   );
 };
 export default CreateScreen;

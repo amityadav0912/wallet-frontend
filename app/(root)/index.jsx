@@ -1,16 +1,18 @@
 import { Text, View } from 'react-native'
 import { SignOutButton } from '../../components/SignOutButton.jsx'
 import {useEffect, useState, useTransition} from 'react'
-import { styles } from '../../assets/styles/auth.style.js'
-import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
-import { Link, useRouter } from "expo-router";
+import { styles } from "../../assets/styles/home.style";
+import { useUser } from "@clerk/clerk-expo";
+import { useRouter } from "expo-router";
 import { Alert, FlatList, Image, RefreshControl, TouchableOpacity } from "react-native";
 import { useTransactions } from "../../hooks/useTransactions";
 import PageLoader from "../../components/PageLoader";
 import { Ionicons } from "@expo/vector-icons";
 import { BalanceCard } from "../../components/BalanceCard";
-import { TransactionItem } from "../../components/TransactionItem";
+import { TransactionItem } from "../../components/TransactionItem"
 import NoTransactionsFound from "../../components/NoTransactionsFound";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 export default function Page() {
   const { user } = useUser();
   const router = useRouter();
@@ -33,9 +35,11 @@ export default function Page() {
     setRefreshing(false);
   }
 
-  useEffect(()=>{
+  useFocusEffect(
+  useCallback(() => {
     loadData();
   }, [loadData])
+);
 
   const handleDelete = (id) => {
     Alert.alert("Delete Transaction", "Are you sure you want to delete this transaction?", [
@@ -83,6 +87,7 @@ export default function Page() {
       </View>
 
       {/* FlatList is a performant way to render long lists in React Native. */}
+      {/* it renders items lazily — only those on the screen. */}
       <FlatList
         style={styles.transactionsList}
         contentContainerStyle={styles.transactionsListContent}

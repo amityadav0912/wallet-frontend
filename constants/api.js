@@ -1,0 +1,1 @@
+export const API_URL="https://wallet-backend-q94j.onrender.com/api"

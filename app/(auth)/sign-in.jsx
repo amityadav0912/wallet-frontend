@@ -55,7 +55,7 @@ export default function Page() {
           contentContainerStyle={{flexGrow: 1}}
           enableOnAndroid={true}
           enableAutomaticScroll={true}
-          extraScrollHeight={30}
+          extraScrollHeight={50}
         >
             <View style={styles.container}>
                 <Image source={require("../../assets/images/revenue-i4.png")} style={styles.illustration} />
